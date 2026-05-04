@@ -1,1 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pellevoisin - 9 avenue de la République</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: Arial, sans-serif; }
+        #panorama { width: 100%; height: 100%; background-color: #000; }
+        
+        /* Écran de chargement personnalisé */
+        #custom-loader {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #1a1a1a; color: white; display: flex;
+            flex-direction: column; align-items: center; justify-content: center;
+            z-index: 1000; transition: opacity 0.5s ease;
+        }
+        h1 { margin: 10px; font-size: 24px; text-align: center; }
+    </style>
+</head>
+<body>
 
+    <div id="custom-loader">
+        <h1>Pellevoisin 9 avenue de la République - RDC</h1>
+        <p>Chargement de la visite...</p>
+    </div>
+
+    <div id="panorama"></div>
+
+    <script>
+        // Configuration de la visite virtuelle
+        const viewer = pannellum.viewer('panorama', {
+            "default": {
+                "firstScene": "entree",
+                "author": "Visite Virtuelle",
+                "sceneFadeDuration": 1000,
+                "autoLoad": true
+            },
+
+            "scenes": {
+                "entree": {
+                    "title": "Entrée",
+                    "panorama": "images/entree_cuisine_20042.JPG", // Chemin vers votre image
+                    "hotSpots": [
+                        { "pitch": -5, "yaw": 45, "type": "scene", "text": "Aller au Séjour (Gauche)", "sceneId": "sejour" },
+                        { "pitch": -5, "yaw": -45, "type": "scene", "text": "Aller à la Chambre 1 (Droite)", "sceneId": "chambre1" }
+                    ]
+                },
+                "sejour": {
+                    "title": "Séjour",
+                    "panorama": "images/salle_200426.JPG",
+                    "hotSpots": [
+                        { "pitch": -5, "yaw": 120, "type": "scene", "text": "Vers Cuisine", "sceneId": "cuisine" },
+                        { "pitch": -5, "yaw": -30, "type": "scene", "text": "Retour Entrée", "sceneId": "entree" }
+                    ]
+                },
+                "cuisine": {
+                    "title": "Cuisine",
+                    "panorama": "images/entree_cuisine_20042.JPG",
+                    "hotSpots": [
+                        { "pitch": -5, "yaw": 0, "type": "scene", "text": "Vers Véranda", "sceneId": "veranda" },
+                        { "pitch": -5, "yaw": 180, "type": "scene", "text": "Retour Séjour", "sceneId": "sejour" }
+                    ]
+                },
+                "veranda": {
+                    "title": "Véranda",
+                    "panorama": "images/veranda_200426.JPG",
+                    "hotSpots": [
+                        { "pitch": -5, "yaw": 180, "type": "scene", "text": "Retour Cuisine", "sceneId": "cuisine" }
+                    ]
+                },
+                "chambre1": {
+                    "title": "Chambre 1",
+                    "panorama": "images/chambre_1_200426.JPG",
+                    "hotSpots": [
+                        { "pitch": -5, "yaw": 90, "type": "scene", "text": "Vers Chambre 2", "sceneId": "chambre2" },
+                        { "pitch": -5, "yaw": -90, "type": "scene", "text": "Retour Entrée", "sceneId": "entree" }
+                    ]
+                },
+                "chambre2": {
+                    "title": "Chambre 2",
+                    "panorama": "images/chambre_2_200426.JPG",
+                    "hotSpots": [
+                        { "pitch": -5, "yaw": 45, "type": "scene", "text": "Vers SdB / WC", "sceneId": "sdb" },
+                        { "pitch": -5, "yaw": -135, "type": "scene", "text": "Retour Chambre 1", "sceneId": "chambre1" }
+                    ]
+                },
+                "sdb": {
+                    "title": "Salle de Bain / WC",
+                    "panorama": "images/sdb_200426.JPG",
+                    "hotSpots": [
+                        { "pitch": -10, "yaw": 0, "type": "scene", "text": "Retour Chambre 2", "sceneId": "chambre2" }
+                    ]
+                }
+            }
+        });
+
+        // Masquer l'écran de chargement une fois prêt
+        viewer.on('load', function() {
+            document.getElementById('custom-loader').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('custom-loader').style.display = 'none';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
