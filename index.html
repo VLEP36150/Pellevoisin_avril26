@@ -35,7 +35,7 @@
         const viewer = pannellum.viewer('panorama', {
             "default": {
                 "firstScene": "entree",
-                "author": "Visite Virtuelle",
+                "author": "Visite Virtuelle Maison Pellevoisin",
                 "sceneFadeDuration": 1000,
                 "autoLoad": true
             },
@@ -43,7 +43,7 @@
             "scenes": {
                 "entree": {
                     "title": "Entrée",
-                    "panorama": "images/entree_cuisine_20042.JPG", // Chemin vers votre image
+                    "panorama": "entree_cuisine_20042.JPG", // Chemin vers votre image
                     "hotSpots": [
                         { "pitch": -5, "yaw": 45, "type": "scene", "text": "Aller au Séjour (Gauche)", "sceneId": "sejour" },
                         { "pitch": -5, "yaw": -45, "type": "scene", "text": "Aller à la Chambre 1 (Droite)", "sceneId": "chambre1" }
@@ -51,7 +51,7 @@
                 },
                 "sejour": {
                     "title": "Séjour",
-                    "panorama": "images/salle_200426.JPG",
+                    "panorama": "salle_200426.JPG",
                     "hotSpots": [
                         { "pitch": -5, "yaw": 120, "type": "scene", "text": "Vers Cuisine", "sceneId": "cuisine" },
                         { "pitch": -5, "yaw": -30, "type": "scene", "text": "Retour Entrée", "sceneId": "entree" }
@@ -59,7 +59,7 @@
                 },
                 "cuisine": {
                     "title": "Cuisine",
-                    "panorama": "images/entree_cuisine_20042.JPG",
+                    "panorama": "entree_cuisine_20042.JPG",
                     "hotSpots": [
                         { "pitch": -5, "yaw": 0, "type": "scene", "text": "Vers Véranda", "sceneId": "veranda" },
                         { "pitch": -5, "yaw": 180, "type": "scene", "text": "Retour Séjour", "sceneId": "sejour" }
@@ -67,14 +67,14 @@
                 },
                 "veranda": {
                     "title": "Véranda",
-                    "panorama": "images/veranda_200426.JPG",
+                    "panorama": "veranda_200426.JPG",
                     "hotSpots": [
                         { "pitch": -5, "yaw": 180, "type": "scene", "text": "Retour Cuisine", "sceneId": "cuisine" }
                     ]
                 },
                 "chambre1": {
                     "title": "Chambre 1",
-                    "panorama": "images/chambre_1_200426.JPG",
+                    "panorama": "chambre_1_200426.JPG",
                     "hotSpots": [
                         { "pitch": -5, "yaw": 90, "type": "scene", "text": "Vers Chambre 2", "sceneId": "chambre2" },
                         { "pitch": -5, "yaw": -90, "type": "scene", "text": "Retour Entrée", "sceneId": "entree" }
@@ -82,7 +82,7 @@
                 },
                 "chambre2": {
                     "title": "Chambre 2",
-                    "panorama": "images/chambre_2_200426.JPG",
+                    "panorama": "chambre_2_200426.JPG",
                     "hotSpots": [
                         { "pitch": -5, "yaw": 45, "type": "scene", "text": "Vers SdB / WC", "sceneId": "sdb" },
                         { "pitch": -5, "yaw": -135, "type": "scene", "text": "Retour Chambre 1", "sceneId": "chambre1" }
@@ -90,7 +90,7 @@
                 },
                 "sdb": {
                     "title": "Salle de Bain / WC",
-                    "panorama": "images/sdb_200426.JPG",
+                    "panorama": "sdb_200426.JPG",
                     "hotSpots": [
                         { "pitch": -10, "yaw": 0, "type": "scene", "text": "Retour Chambre 2", "sceneId": "chambre2" }
                     ]
