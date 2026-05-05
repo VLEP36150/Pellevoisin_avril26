@@ -3,102 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>9 Ave de la République - RDC</title>
+    <title>Visite 9 Ave de la République</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #000; }
-        #panorama { width: 100%; height: 100%; }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: sans-serif; background: #1a1a1a; }
+        #panorama { width: 100%; height: calc(100% - 100px); } /* Laisse de la place pour le menu */
         
+        /* Barre de navigation en bas */
+        #controls {
+            height: 100px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 0 10px;
+        }
+
+        .nav-btn {
+            padding: 8px 15px;
+            background: #444;
+            color: white;
+            border: 1px solid #666;
+            border-radius: 5px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.3s;
+        }
+
+        .nav-btn:hover { background: #666; }
+        .nav-btn.active { background: #007bff; border-color: #fff; }
+
         #loader-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #1a1a1a; color: white; display: flex; 
             flex-direction: column; align-items: center; justify-content: center; 
-            z-index: 2000; transition: opacity 0.8s ease;
+            z-index: 2000;
         }
     </style>
 </head>
 <body>
 
 <div id="loader-overlay">
-    <h1>Pellevoisin 9 avenue de la République - RDC</h1>
-    <p>Chargement des photos...</p>
+    <h2>Pellevoisin 9 avenue de la République - RDC</h2>
+    <p>Chargement de la visite...</p>
 </div>
 
 <div id="panorama"></div>
+
+<div id="controls">
+    <div class="nav-btn active" onclick="loadScene('entree', this)">Entrée</div>
+    <div class="nav-btn" onclick="loadScene('sejour', this)">Séjour</div>
+    <div class="nav-btn" onclick="loadScene('cuisine', this)">Cuisine</div>
+    <div class="nav-btn" onclick="loadScene('veranda', this)">Véranda</div>
+    <div class="nav-btn" onclick="loadScene('chambre1', this)">Chambre 1</div>
+    <div class="nav-btn" onclick="loadScene('chambre2', this)">Chambre 2</div>
+    <div class="nav-btn" onclick="loadScene('sdb', this)">SdB / WC</div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 <script>
 const viewer = pannellum.viewer('panorama', {
     "default": {
         "firstScene": "entree",
-        "author": "Visite Virtuelle",
         "autoLoad": true,
-        "sceneFadeDuration": 1000
+        "showControls": true
     },
-
     "scenes": {
-        "entree": {
-            "title": "Entrée",
-            "panorama": "entree_cuisine_20042.JPG", 
-            "hotSpots": [
-                { "pitch": -5, "yaw": 45, "type": "scene", "text": "Séjour (Gauche)", "sceneId": "sejour" },
-                { "pitch": -5, "yaw": -45, "type": "scene", "text": "Chambre 1 (Droite)", "sceneId": "chambre1" }
-            ]
-        },
-        "sejour": {
-            "title": "Séjour",
-            "panorama": "salle_200426.JPG",
-            "hotSpots": [
-                { "pitch": -5, "yaw": 120, "type": "scene", "text": "Cuisine", "sceneId": "cuisine" },
-                { "pitch": -5, "yaw": -30, "type": "scene", "text": "Retour Entrée", "sceneId": "entree" }
-            ]
-        },
-        "cuisine": {
-            "title": "Cuisine",
-            "panorama": "entree_cuisine_20042.JPG",
-            "hotSpots": [
-                { "pitch": -5, "yaw": 0, "type": "scene", "text": "Véranda", "sceneId": "veranda" },
-                { "pitch": -5, "yaw": 180, "type": "scene", "text": "Retour Séjour", "sceneId": "sejour" }
-            ]
-        },
-        "veranda": {
-            "title": "Véranda",
-            "panorama": "veranda_200426.JPG",
-            "hotSpots": [
-                { "pitch": -5, "yaw": 180, "type": "scene", "text": "Retour Cuisine", "sceneId": "cuisine" }
-            ]
-        },
-        "chambre1": {
-            "title": "Chambre 1",
-            "panorama": "chambre_1.JPG",
-            "hotSpots": [
-                { "pitch": -5, "yaw": 90, "type": "scene", "text": "Chambre 2", "sceneId": "chambre2" },
-                { "pitch": -5, "yaw": -90, "type": "scene", "text": "Retour Entrée", "sceneId": "entree" }
-            ]
-        },
-        "chambre2": {
-            "title": "Chambre 2",
-            "panorama": "chambre_2_200426.jpg",
-            "hotSpots": [
-                { "pitch": -5, "yaw": 45, "type": "scene", "text": "SdB / WC", "sceneId": "sdb" },
-                { "pitch": -5, "yaw": -135, "type": "scene", "text": "Retour Chambre 1", "sceneId": "chambre1" }
-            ]
-        },
-        "sdb": {
-            "title": "Salle de Bain / WC",
-            "panorama": "sdb_200426.JPG",
-            "hotSpots": [
-                { "pitch": -10, "yaw": 0, "type": "scene", "text": "Retour Chambre 2", "sceneId": "chambre2" }
-            ]
-        }
+        "entree": { "title": "Entrée", "panorama": "entree_cuisine_20042.JPG" },
+        "sejour": { "title": "Séjour", "panorama": "salle_200426.JPG" },
+        "cuisine": { "title": "Cuisine", "panorama": "entree_cuisine_20042.JPG" },
+        "veranda": { "title": "Véranda", "panorama": "veranda_200426.JPG" },
+        "chambre1": { "title": "Chambre 1", "panorama": "chambre_1.JPG" },
+        "chambre2": { "title": "Chambre 2", "panorama": "chambre_2_200426.JPG" },
+        "sdb": { "title": "SdB / WC", "panorama": "sdb_200426.JPG" }
     }
 });
 
-// Cache l'écran de chargement quand la première image est prête
-viewer.on('load', function() {
-    const loader = document.getElementById('loader-overlay');
-    loader.style.opacity = '0';
-    setTimeout(() => { loader.style.display = 'none'; }, 800);
+// Fonction pour changer de pièce manuellement
+function loadScene(id, btn) {
+    viewer.loadScene(id);
+    
+    // Mise à jour visuelle des boutons
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+}
+
+// Retirer l'écran de chargement
+viewer.on('load', () => {
+    document.getElementById('loader-overlay').style.display = 'none';
 });
 </script>
 </body>
