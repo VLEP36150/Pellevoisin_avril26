@@ -13,6 +13,7 @@
             height: 110px; width: 100%; background: rgba(0, 0, 0, 0.95);
             display: flex; justify-content: flex-start; align-items: center;
             gap: 8px; overflow-x: auto; padding: 0 15px;
+            scrollbar-width: thin;
         }
 
         .nav-btn {
@@ -43,7 +44,6 @@
 
 <div id="controls">
     <div class="nav-btn active" onclick="loadScene('facade', this)">La Maison (Façade)</div>
-    
     <div class="nav-btn" onclick="loadScene('entree', this)">Entrée</div>
     <div class="nav-btn" onclick="loadScene('sejour', this)">Séjour</div>
     <div class="nav-btn" onclick="loadScene('cuisine', this)">Cuisine</div>
@@ -51,9 +51,7 @@
     <div class="nav-btn" onclick="loadScene('chambre1', this)">Chambre 1</div>
     <div class="nav-btn" onclick="loadScene('chambre2', this)">Chambre 2</div>
     <div class="nav-btn" onclick="loadScene('sdb', this)">SdB / WC</div>
-    
     <div class="nav-btn" onclick="loadScene('chambre_etage', this)" style="background: #28a745;">Chambre Étage</div>
-    
     <div class="nav-btn" onclick="loadScene('cave', this)">La Cave</div>
     <div class="nav-btn" onclick="loadScene('jardin', this)">Jardin Arrière</div>
 </div>
@@ -68,7 +66,11 @@ const viewer = pannellum.viewer('panorama', {
         "orientationOnDeviceHelp": false
     },
     "scenes": {
-        "facade": { "title": "Façade", "panorama": "facade_200426.JPG" },
+        "facade": { 
+            "title": "Façade", 
+            "panorama": "facade_200426.JPG",
+            "yaw": 180 
+        },
         "entree": { "title": "Entrée", "panorama": "entree_200426.JPG" },
         "sejour": { "title": "Séjour", "panorama": "salle_200426.JPG" },
         "cuisine": { "title": "Cuisine", "panorama": "cuisine_200426.JPG" },
@@ -77,7 +79,7 @@ const viewer = pannellum.viewer('panorama', {
         "chambre2": { "title": "Chambre 2", "panorama": "chambre_2_200426.JPG" },
         "sdb": { "title": "SdB / WC", "panorama": "sdb_200426.JPG" },
         "chambre_etage": { "title": "Chambre Étage", "panorama": "chambre_etage.JPG" },
-        "cave": { "title": "Cave", "panorama": "cave_200426.JPG" },
+        "cave": { "title": "La Cave", "panorama": "cave_200426.JPG" },
         "jardin": { "title": "Jardin Arrière", "panorama": "jardin_200426.JPG" }
     }
 });
