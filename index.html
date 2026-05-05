@@ -7,42 +7,27 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
     <style>
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: sans-serif; background: #1a1a1a; }
-        #panorama { width: 100%; height: calc(100% - 110px); } /* Espace pour le menu */
+        #panorama { width: 100%; height: calc(100% - 110px); }
         
-        /* Barre de navigation améliorée */
         #controls {
-            height: 110px;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            overflow-x: auto; /* Permet de défiler sur mobile si trop de boutons */
-            padding: 0 15px;
+            height: 110px; width: 100%; background: rgba(0, 0, 0, 0.95);
+            display: flex; justify-content: flex-start; align-items: center;
+            gap: 8px; overflow-x: auto; padding: 0 15px;
         }
 
         .nav-btn {
-            padding: 10px 15px;
-            background: #333;
-            color: white;
-            border: 1px solid #555;
-            border-radius: 6px;
-            cursor: pointer;
-            white-space: nowrap;
-            font-size: 14px;
+            padding: 10px 15px; background: #333; color: white; border: 1px solid #555;
+            border-radius: 6px; cursor: pointer; white-space: nowrap; font-size: 14px;
             transition: all 0.3s ease;
         }
 
         .nav-btn:hover { background: #555; border-color: #888; }
         .nav-btn.active { background: #007bff; border-color: #fff; font-weight: bold; }
 
-        /* Écran de chargement */
         #loader-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #1a1a1a; color: white; display: flex; 
-            flex-direction: column; align-items: center; justify-content: center; 
-            z-index: 2000;
+            flex-direction: column; align-items: center; justify-content: center; z-index: 2000;
         }
         h1 { font-size: 22px; text-align: center; margin-bottom: 5px; }
     </style>
@@ -57,26 +42,33 @@
 <div id="panorama"></div>
 
 <div id="controls">
-    <div class="nav-btn active" onclick="loadScene('entree', this)">Entrée</div>
+    <div class="nav-btn active" onclick="loadScene('facade', this)">La Maison (Façade)</div>
+    
+    <div class="nav-btn" onclick="loadScene('entree', this)">Entrée</div>
     <div class="nav-btn" onclick="loadScene('sejour', this)">Séjour</div>
     <div class="nav-btn" onclick="loadScene('cuisine', this)">Cuisine</div>
     <div class="nav-btn" onclick="loadScene('veranda', this)">Véranda</div>
-    <div class="nav-btn" onclick="loadScene('chambre1', this)">Chambre 1 (RDC)</div>
-    <div class="nav-btn" onclick="loadScene('chambre2', this)">Chambre 2 (RDC)</div>
+    <div class="nav-btn" onclick="loadScene('chambre1', this)">Chambre 1</div>
+    <div class="nav-btn" onclick="loadScene('chambre2', this)">Chambre 2</div>
     <div class="nav-btn" onclick="loadScene('sdb', this)">SdB / WC</div>
+    
     <div class="nav-btn" onclick="loadScene('chambre_etage', this)" style="background: #28a745;">Chambre Étage</div>
+    
+    <div class="nav-btn" onclick="loadScene('cave', this)">La Cave</div>
+    <div class="nav-btn" onclick="loadScene('jardin', this)">Jardin Arrière</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 <script>
 const viewer = pannellum.viewer('panorama', {
     "default": {
-        "firstScene": "entree",
+        "firstScene": "facade",
         "autoLoad": true,
         "showControls": true,
         "orientationOnDeviceHelp": false
     },
     "scenes": {
+        "facade": { "title": "Façade", "panorama": "facade_200426.JPG" },
         "entree": { "title": "Entrée", "panorama": "entree_200426.JPG" },
         "sejour": { "title": "Séjour", "panorama": "salle_200426.JPG" },
         "cuisine": { "title": "Cuisine", "panorama": "cuisine_200426.JPG" },
@@ -84,7 +76,9 @@ const viewer = pannellum.viewer('panorama', {
         "chambre1": { "title": "Chambre 1", "panorama": "chambre_1.JPG" },
         "chambre2": { "title": "Chambre 2", "panorama": "chambre_2_200426.JPG" },
         "sdb": { "title": "SdB / WC", "panorama": "sdb_200426.JPG" },
-        "chambre_etage": { "title": "Chambre Étage", "panorama": "chambre_etage.JPG" }
+        "chambre_etage": { "title": "Chambre Étage", "panorama": "chambre_etage.JPG" },
+        "cave": { "title": "Cave", "panorama": "cave_200426.JPG" },
+        "jardin": { "title": "Jardin Arrière", "panorama": "jardin_200426.JPG" }
     }
 });
 
